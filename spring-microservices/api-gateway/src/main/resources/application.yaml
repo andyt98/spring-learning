@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: EMPLOYEE-SERVICE
+          uri: lb://EMPLOYEE-SERVICE
+          predicates:
+            - name: Path
+              args:
+                pattern: "/api/employees/**"
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - name: Path
+              args:
+                pattern: "/api/departments/**"
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+
+# Above options are for enabling auto-discovery -> path: /employee-service/api/employees
+
+logging:
+  level:
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: debug
+
+server:
+  port: 9191
+
+eureka:
+  client:
+    eureka-server-d-n-s-name: "http://localhost:8761"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+

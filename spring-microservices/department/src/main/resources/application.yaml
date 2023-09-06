@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: DEPARTMENT-SERVICE
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    eureka-server-d-n-s-name: "http://localhost:8761"
+
